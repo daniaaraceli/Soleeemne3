@@ -50,4 +50,6 @@ if df is not None:
     st.write("Media:",)
     st.write(df_seleccionado.mean(numeric_only=True))
     st.write("Mediana:",)
+    st.write(df_seleccionado.mean(numeric_only=True))
     st.write("Desviación estándar:",)
+    st.write(df_seleccionado.std(numeric_only=True))

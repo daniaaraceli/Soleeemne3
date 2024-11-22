@@ -40,21 +40,13 @@ if df is not None:
     st.write("Mostrar datos originales:")
     st.dataframe(df_cleaned)
 
-    # Filtrado interactivo por población mínima
-    min_poblacion = st.slider("Filtra por población mínima:", int(df_cleaned['Población'].min()), int(df_cleaned['Población'].max()), step=1000000)
-    df_filtered = df_cleaned[df_cleaned['Población'] >= min_poblacion]
-    st.write(f"Datos filtrados con población mayor o igual a {min_poblacion}:")
-    st.dataframe(df_filtered)
-
-    # Gráficos interactivos
-    st.write("Gráficos:")
-    x_axis = st.selectbox("Selecciona la variable para el eje X:", ['Población', 'Área (km²)', 'Fronteras', 'Idiomas Oficiales', 'Zonas Horarias'])
-    y_axis = st.selectbox("Selecciona la variable para el eje Y:", ['Población', 'Área (km²)', 'Fronteras', 'Idiomas Oficiales', 'Zonas Horarias'])
-
-if x_axis and y_axis:
-    fig, ax = plt.subplots()
-    ax.scatter(df_filtered[x_axis], df_filtered[y_axis], alpha=0.7)
-    ax.set_xlabel(x_axis)
-    ax.set_ylabel(y_axis)
-    ax.set_title(f"Gráfico de {x_axis} vs {y_axis}")
-    st.pyplot(fig)
+    st.header("Selecciona una columna del dataframe utilizando un menú desplegable")
+    columnas = st.multiselect('Selecciona las columnas a visualizar', df_cleaned.columns.tolist(), default=df_cleaned.columns.tolist())
+    df_seleccionado = df_cleaned[columnas]
+    # Mostrar el DataFrame con las columnas seleccionadas
+    st.write('Columna Selecionada:')
+    st.write(df_seleccionado)
+    st.write("Estadísticas de las columnas seleccionadas:")
+    st.write("Media:",)
+    st.write("Mediana:",)
+    st.write("Desviación estándar:",)

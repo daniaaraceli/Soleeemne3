@@ -21,17 +21,5 @@ df = obtener_datos_api(api_url)
 
 if df is not None:
     st.write(df.head())
-df['Nombre'] = df['name'].apply(lambda x: x.get('common') if isinstance(x, dict) else None)
-df['Región'] = df['region']
-df['Población'] = df['population']
-df['Área (km²)'] = df['area']
-df['Fronteras'] = df['borders'].apply(lambda x: len(x) if isinstance(x, list) else 0)
-df['Idiomas Oficiales'] = df['languages'].apply(lambda x: len(x) if isinstance(x, dict) else 0)
-df['Zonas Horarias'] = df['timezones'].apply(lambda x: len(x) if isinstance(x, list) else 0)
-
-df_cleaned = df[['Nombre', 'Región', 'Población', 'Área (km²)', 'Fronteras', 'Idiomas Oficiales', 'Zonas Horarias']]
-
-# Visualiza el DataFrame resultante
-print(df_cleaned.head())
 
 

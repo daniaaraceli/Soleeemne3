@@ -54,5 +54,19 @@ if df is not None:
     st.write("Desviación estándar:",)
     st.write(df_seleccionado.std(numeric_only=True))
 
+columna_ordenar = st.selectbox('Selecciona una columna para ordenar', df_seleccionado.columns)
+    # Control para seleccionar el orden (ascendente o descendente)
+    orden = st.radio('Selecciona el orden:', ('Ascendente', 'Descendente'))
+    # Ordenar el DataFrame según la columna seleccionada y el orden elegido
+    if orden == 'Ascendente':
+        df_ordenado = df_seleccionado.sort_values(by=columna_ordenar, ascending=True)
+    else:
+        df_ordenado = df_seleccionado.sort_values(by=columna_ordenar, ascending=False)
+
+    # Mostrar el DataFrame ordenado
+    st.write('DataFrame Ordenado:')
+    st.write(df_ordenado)
+
+
 
 

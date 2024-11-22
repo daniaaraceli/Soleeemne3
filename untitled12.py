@@ -18,5 +18,5 @@ def obtener_datos_api(api_url):
   df = obtener_datos_api(api_url)
   # Si hay datos, mostrar el DataFrame, mostrar dataframe con las columna seleccionadas, permitir filtrado y mostrar gráficos.
   if df is not None:
-        # Mostrar las primeras 5 filas del dataframe
-        st.write(df.head())    
+      # Mostrar las primeras 5 filas del dataframe
+      st.write(df.head())    

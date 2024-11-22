@@ -53,3 +53,64 @@ if df is not None:
     st.write(df_seleccionado.mean(numeric_only=True))
     st.write("Desviación estándar:",)
     st.write(df_seleccionado.std(numeric_only=True))
+
+import matplotlib.pyplot as plt
+
+# Mostrar DataFrame con las columnas seleccionadas
+st.title("Interacción con los datos:")
+st.write("Mostrar datos originales:")
+st.dataframe(df_cleaned)
+
+# Selección de columna
+st.header("Selecciona una columna del dataframe utilizando un menú desplegable")
+st.write("Selecciona las columnas a visualizar:")
+df_seleccionado = df_cleaned[st.multiselect('Selecciona las columnas a visualizar:', df_cleaned.columns.tolist(), default=df_cleaned.columns.tolist())]
+
+# Mostrar el DataFrame con las columnas seleccionadas
+st.write('Columna Seleccionada:')
+st.write(df_seleccionado)
+
+# Mostrar estadísticas de las columnas seleccionadas
+st.write("Estadísticas de las columnas seleccionadas:")
+
+# Media
+st.write("Media:")
+st.write(df_seleccionado.mean(numeric_only=True))  # Solo columnas numéricas
+
+# Mediana
+st.write("Mediana:")
+st.write(df_seleccionado.median(numeric_only=True))  # Solo columnas numéricas
+
+# Desviación estándar
+st.write("Desviación estándar:")
+st.write(df_seleccionado.std(numeric_only=True))  # Solo columnas numéricas
+
+# Crear gráfico de dispersión entre dos columnas seleccionadas
+st.header("Gráfico de dispersión")
+
+# Selección de columnas numéricas para el gráfico de dispersión
+x_col = st.selectbox("Selecciona la columna para el eje X:", df_seleccionado.select_dtypes(include=['float64', 'int64']).columns)
+y_col = st.selectbox("Selecciona la columna para el eje Y:", df_seleccionado.select_dtypes(include=['float64', 'int64']).columns)
+
+# Mostrar el gráfico de dispersión si se han seleccionado ambas columnas
+if x_col and y_col:
+    fig, ax = plt.subplots()
+    ax.scatter(df_seleccionado[x_col], df_seleccionado[y_col])
+    ax.set_xlabel(x_col)
+    ax.set_ylabel(y_col)
+    ax.set_title(f"Gráfico de {x_col} vs {y_col}")
+    st.pyplot(fig)
+
+# Crear gráfico de barras para una columna categórica
+st.header("Gráfico de barras de una columna categórica")
+
+# Selección de columna categórica para graficar
+columna_categorica = st.selectbox("Selecciona la columna categórica para el gráfico de barras:", ['Región', 'Zonas Horarias'])
+
+# Mostrar el gráfico de barras
+if columna_categorica:
+    fig, ax = plt.subplots()
+    df_seleccionado[columna_categorica].value_counts().plot(kind='bar', ax=ax)
+    ax.set_title(f"Distribución de {columna_categorica}")
+    st.pyplot(fig)
+

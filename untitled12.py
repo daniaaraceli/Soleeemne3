@@ -36,7 +36,7 @@ if df is not None:
     df_cleaned = df[columnas]
 
     # Mostrar DataFrame con las columnas seleccionadas
-    st.write("Datos Filtrados:")
+    st.write("Mostrar datos originales:")
     st.dataframe(df_cleaned)
 
     # Filtrado interactivo por población mínima

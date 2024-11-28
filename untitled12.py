@@ -57,5 +57,5 @@ if df is not None:
     st.write(df_seleccionado.std(numeric_only=True))
 
     # Selección de columna para ordenar
-    columna_ordenar = st.selectbox('Selecciona una columna
+    columna_ordenar = st.selectbox('Selecciona una columna')
 

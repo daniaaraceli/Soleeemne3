@@ -3,13 +3,13 @@ import pandas as pd
 import requests
 import streamlit as st
 
-  def obtener_datos_api(api_url):
+def obtener_datos_api(api_url):
     """Función que realiza la petición a la API y devuelve un DataFrame."""
     response = requests.get(api_url)
-   if response.status_code == 200:
+ if response.status_code == 200:
         data = response.json()
         return pd.DataFrame(data)
-    else:
+  else:
         st.error('Error al obtener los datos de la API')
         return None
 

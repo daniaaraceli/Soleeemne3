@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-import pandas as pd
 import requests
+import pandas as pd
 import streamlit as st
 
-def obtener_datos_api(api_url):
-    """Función que realiza la petición a la API y devuelve un DataFrame."""
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        data = response.json()
-        return pd.DataFrame(data)
-    else:
-        st.error('Error al obtener los datos de la API')
+def obtener_datos_api(api_url): 
+    """Función que realiza la petición a la API y devuelve un DataFrame.""" 
+    response = requests.get(api_url) 
+    if response.status_code == 200: 
+        data = response.json() 
+        return pd.DataFrame(data) 
+    else: 
+        st.error('Error al obtener los datos de la API') 
         return None
 
   
